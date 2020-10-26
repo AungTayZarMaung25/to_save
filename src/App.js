@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect, useState } from 'react';
 
-function App() {
+import { CssBaseline, makeStyles } from '@material-ui/core'
+
+import {
+  Drawer,
+  Home,
+  Header
+} from './container'
+import { useDispatch } from 'react-redux';
+import { action_GetPermission } from './module/action.user';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex'
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  }
+}))
+
+export default () => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(action_GetPermission());
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div className={classes.root}>
+      <CssBaseline />
 
-export default App;
+      <Header />
+      <Drawer />
+
+      <main className={classes.content}>
+        <Home/>
+      </main>
+
+
+    </div>
+  )
+}

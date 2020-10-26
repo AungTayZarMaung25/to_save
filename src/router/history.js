@@ -1,0 +1,1 @@
+const createBrowserHistory = require('history')
