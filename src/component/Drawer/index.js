@@ -4,6 +4,8 @@ import {
     Drawer,
     IconButton,
     List,
+    ListItem,
+    ListItemText,
     makeStyles,
 } from '@material-ui/core'
 import clsx from 'clsx';
@@ -73,6 +75,12 @@ const useStyles = makeStyles((theme) => ({
     },
     ItemCurrent: {
         backgroundColor: 'gray'
+    },
+    user_name : {
+        fontWeight: "bold"
+    },
+    role_text: {
+        fontSize: 14
     }
 }))
 
@@ -92,10 +100,6 @@ const DrawerBar = ({
     const { t } = useTranslation()
     const location = useLocation();
     const pathName = location.pathname || '/';
-
-    useEffect(() => {
-        console.log(permission)
-    }, [permission])
 
     const [data, setData] = useState({
         roleName: '',
@@ -189,7 +193,12 @@ const DrawerBar = ({
                 open
             >
                 <div className={classes.toolBar}>
-                    {data.roleName}
+                    <ListItem>
+                        <ListItemText
+                            primary={<span className={classes.user_name}>Thant Sin Aung</span>}
+                            secondary={<span className={classes.role_text}>{data.roleName}</span>}
+                        />
+                    </ListItem>
                     {
                         menuState ?
                             <IconButton onClick={Toggle}>

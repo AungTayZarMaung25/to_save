@@ -13,6 +13,18 @@ import * as lang from './lang';
 export const FONT_CN = 'zh'
 export const FONT_EN = 'en-US'
 
+export const LANGUAGES = [
+    {
+        name: 'English',
+        value: FONT_EN
+    },
+    {
+        name: '中文',
+        value: FONT_CN
+    },
+    
+]
+
 i18n.use(LanguageDetector)
     .init({
         resources: {
@@ -39,7 +51,7 @@ i18n.use(LanguageDetector)
         debug: true,
         ns: ["translation"],
         defaultNS: 'translation',
-        fallbackLng: 'en-US',
+        fallbackLng: FONT_EN,
         keySeparator: '.',
         interpolation: {
             formatSeparator: ','

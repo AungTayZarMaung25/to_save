@@ -5,6 +5,11 @@ export default (props)=>{
     return (
         <React.Fragment>
             <h4>Home {props.role}</h4>
+
+            here
+            <br/>
+            <br/>
+            <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
           facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
@@ -15,6 +20,7 @@ export default (props)=>{
           imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
           arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
+          </div>
         </React.Fragment>
     )
 }
