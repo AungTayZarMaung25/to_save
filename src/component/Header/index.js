@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {
-    AppBar, 
-    Badge, 
-    IconButton, 
+    AppBar,
+    Badge,
+    Icon,
+    IconButton,
     makeStyles,
-    Menu, 
-    MenuItem, 
-    Toolbar, 
+    Menu,
+    MenuItem,
+    Toolbar,
     Typography,
 
 } from '@material-ui/core'
@@ -15,13 +16,15 @@ import {
 import {
     Menu as MenuIcon,
     Notifications,
-    AccountCircle
+    AccountCircle,
+    LanguageTwoTone
 } from '@material-ui/icons'
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-
+import i18n from 'i18next';
 
 import { drawerWidth } from '../Drawer'
+import { FONT_CN, FONT_EN, LANGUAGES } from '../../constant/Language';
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -62,11 +65,26 @@ export default (props) => {
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-    
+    const [langEl, setLangEl] = React.useState(null);
+
+    const changeLanguage = (lang) => {
+        try {
+            if ([FONT_EN, FONT_CN].includes(lang)) {
+                console.log('here')
+                i18n.changeLanguage(lang);
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     /**
      * aria-control
      */
     const menuId = 'primary-search-account-menu'
+
+    const LangId = 'language-id'
 
     return (
         <div>
@@ -102,24 +120,38 @@ export default (props) => {
                         {t('header.title_text')}
                     </Typography>
                     <div>
-                        <IconButton 
-                        aria-label="show 10 new notifications"
-                        color={"inherit"}
+
+                        <IconButton
+                            aria-label="change language"
+                            color={'inherit'}
+                            aria-controls={LangId}
+                            aria-haspopup={true}
+                            onClick={(event) => setLangEl(event.currentTarget)}
+                            color={'inherit'}
+                        >
+                            <LanguageTwoTone />
+                        </IconButton>
+
+                        <IconButton
+                            aria-label="show 10 new notifications"
+                            color={"inherit"}
                         >
                             <Badge badgeContent={10} color="error">
-                                <Notifications/>
+                                <Notifications />
                             </Badge>
                         </IconButton>
+
                         <IconButton
-                        edge={'end'}
-                        aria-label='account of current user'
-                        aria-controls={menuId}
-                        aria-haspopup={true}
-                        onClick={(event)=>setAnchorEl(event.currentTarget)}
-                        color={'inherit'}
+                            edge={'end'}
+                            aria-label='account of current user'
+                            aria-controls={menuId}
+                            aria-haspopup={true}
+                            onClick={(event) => setAnchorEl(event.currentTarget)}
+                            color={'inherit'}
                         >
-                            <AccountCircle/>
+                            <AccountCircle />
                         </IconButton>
+
                     </div>
                 </Toolbar>
             </AppBar>
@@ -137,9 +169,36 @@ export default (props) => {
                 }}
                 open={Boolean(anchorEl)}
                 onClose={() => setAnchorEl(null)}>
-                    <MenuItem>Profile</MenuItem>
-                    <MenuItem>My account</MenuItem>
-                    <MenuItem>Setting</MenuItem>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>My account</MenuItem>
+                <MenuItem>Setting</MenuItem>
+            </Menu>
+
+            {/**
+             * Language
+             */}
+            <Menu
+                anchorEl={langEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                }}
+                id={LangId}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                }}
+                open={Boolean(langEl)}
+                onClose={() => setLangEl(null)}
+            >
+                {
+                    LANGUAGES.map((lang, index) => (
+                        <MenuItem
+                            onClick={() => changeLanguage(lang.value)}
+                            key={index}>{lang.name}</MenuItem>
+                    ))
+                }
             </Menu>
         </div>
     )

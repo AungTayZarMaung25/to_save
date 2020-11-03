@@ -13,6 +13,18 @@ import * as lang from './lang';
 export const FONT_CN = 'zh'
 export const FONT_EN = 'en-US'
 
+export const LANGUAGES = [
+    {
+        name: 'English',
+        value: FONT_EN
+    },
+    {
+        name: '中文',
+        value: FONT_CN
+    },
+
+]
+
 i18n.use(LanguageDetector)
     .init({
         resources: {
@@ -21,7 +33,8 @@ i18n.use(LanguageDetector)
                     "header": {
                         "title_text": "Delivery management system"
                     },
-                    "sidebar": lang.en.sidebar
+                    "sidebar": lang.sidebar_en,
+                    "waybill_entry": lang.waybill_entry_en
                 }
             },
 
@@ -30,7 +43,8 @@ i18n.use(LanguageDetector)
                     "header": {
                         "title_text": "配送管理系统"
                     },
-                    "sidebar": lang.zh.sidebar
+                    "sidebar": lang.sidebar_zh,
+                    "waybill_entry": lang.waybill_entry_zh
                 }
             },
 
@@ -39,7 +53,7 @@ i18n.use(LanguageDetector)
         debug: true,
         ns: ["translation"],
         defaultNS: 'translation',
-        fallbackLng: 'en-US',
+        fallbackLng: FONT_EN,
         keySeparator: '.',
         interpolation: {
             formatSeparator: ','
