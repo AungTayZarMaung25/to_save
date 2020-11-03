@@ -69,7 +69,6 @@ export default (props) => {
 
     const changeLanguage = (lang) => {
         try {
-            console.log(lang)
             if ([FONT_EN, FONT_CN].includes(lang)) {
                 console.log('here')
                 i18n.changeLanguage(lang);

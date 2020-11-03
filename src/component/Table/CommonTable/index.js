@@ -6,10 +6,17 @@ import TableBody from './TableBody';
 export default ({
     columns = [],
     rows = [],
-    onSort = _ => { }
+    showAll = true,
+    onSort = _ => { },
 }) => {
 
     const filter_columns = columns.filter(col => col.check)
+    const has_data = rows.length > 0
+
+    let header_col = filter_columns
+    if (!showAll)
+        if (!has_data)
+            header_col = filter_columns.slice(0, 6)
 
     return (
         <table style={{
@@ -18,14 +25,15 @@ export default ({
         }}>
 
             <TableHeader
-                columns={filter_columns}
+                columns={header_col}
                 onSort={onSort}
                 sortedColumn={{}}
             />
 
             <TableBody
-                columns={filter_columns}
+                columns={header_col}
                 rows={rows}
+                has_data={has_data}
             />
 
         </table>

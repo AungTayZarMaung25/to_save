@@ -1,0 +1,33 @@
+import React from 'react';
+import { Field, useField } from 'formik';
+import PropTypes from 'prop-types';
+import FormGroup from './FormGroup';
+
+const Input = props => {
+    const { name, label, type = 'text' } = props;
+    const [filed, meta] = useField(props)
+
+    const hasError = meta.error && meta.touched
+    return (
+        <FormGroup
+            name={name}
+            label={label}
+        >
+            <Field
+                name={name}
+                type={type}
+                className={`inputField ${hasError && 'inputError'}`}
+                {...props}
+            />
+            <span className={"messageError"}>{hasError ? meta.error : ''}</span>
+        </FormGroup>
+    )
+}
+
+Input.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    control: PropTypes.string
+}
+
+export default Input

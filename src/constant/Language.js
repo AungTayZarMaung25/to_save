@@ -22,7 +22,7 @@ export const LANGUAGES = [
         name: '中文',
         value: FONT_CN
     },
-    
+
 ]
 
 i18n.use(LanguageDetector)
@@ -33,7 +33,8 @@ i18n.use(LanguageDetector)
                     "header": {
                         "title_text": "Delivery management system"
                     },
-                    "sidebar": lang.en.sidebar
+                    "sidebar": lang.sidebar_en,
+                    "waybill_entry": lang.waybill_entry_en
                 }
             },
 
@@ -42,7 +43,8 @@ i18n.use(LanguageDetector)
                     "header": {
                         "title_text": "配送管理系统"
                     },
-                    "sidebar": lang.zh.sidebar
+                    "sidebar": lang.sidebar_zh,
+                    "waybill_entry": lang.waybill_entry_zh
                 }
             },
 

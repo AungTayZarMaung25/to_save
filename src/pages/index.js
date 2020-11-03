@@ -1,7 +1,14 @@
-export * as  Document from './document';
+import * as Document from './document';
 
-export * as Scan from './scan';
+import * as Scan from './scan';
 
-export * as System from './system'
+import * as System from './system'
 
-export * as information from './Information'
+import * as information from './Information'
+
+export {
+    Document,
+    Scan,
+    System,
+    information
+}

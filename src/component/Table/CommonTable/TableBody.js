@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { makeStyles } from '@material-ui/core';
+import { tr } from 'date-fns/locale';
 
 const useStyles = makeStyles({
     row: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 export default ({
     columns = [],
     rows = [],
+    has_data = true
 }) => {
 
     const classes = useStyles()
@@ -37,6 +39,17 @@ export default ({
         return value;
 
     }
+
+    if (!has_data)
+        return (
+            <tbody>
+                <tr>
+                    <td colSpan={'100%'} className={classes.td}>
+                        <center>no data</center>
+                    </td>
+                </tr>
+            </tbody>
+        )
 
     return (
         <tbody>
