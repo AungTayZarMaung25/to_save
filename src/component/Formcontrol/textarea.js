@@ -3,8 +3,13 @@ import { Field, useField } from 'formik';
 import PropTypes from 'prop-types';
 import FormGroup from './FormGroup';
 
-const Input = props => {
-    const { name, label, type = 'text' } = props;
+const Textarea = props => {
+    const {
+        name,
+        label,
+        type = 'text',
+        rows = '3'
+    } = props;
     const [, meta] = useField(props)
 
     const hasError = meta.error && meta.touched
@@ -14,8 +19,10 @@ const Input = props => {
             label={label}
         >
             <Field
+                as={'textarea'}
                 name={name}
                 type={type}
+                rows={rows}
                 className={`inputField ${hasError && 'inputError'}`}
                 {...props}
             />
@@ -24,10 +31,9 @@ const Input = props => {
     )
 }
 
-Input.propTypes = {
+Textarea.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
-    control: PropTypes.string
 }
 
-export default Input
+export default Textarea

@@ -370,7 +370,7 @@ export default (props) => {
                                             name={INPUT_NAME.basic.shipment_type}
                                             label={t('waybill_entry.shipment_type')}
                                             control={Types.select}
-                                            options={carrier}
+                                            options={shipment_type}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={2}>
@@ -378,7 +378,7 @@ export default (props) => {
                                             name={INPUT_NAME.basic.shipping_mode}
                                             label={t('waybill_entry.shipping_mode')}
                                             control={Types.select}
-                                            options={carrier}
+                                            options={shipping_mode}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={2}>
@@ -445,24 +445,31 @@ export default (props) => {
                                         <FormControl
                                             name={INPUT_NAME.sender.region}
                                             label={t('waybill_entry.region')}
+                                            control={Types.select}
+                                            options={region}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.sender.district}
                                             label={t('waybill_entry.district')}
+                                            control={Types.select}
+                                            options={district}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.sender.township}
                                             label={t('waybill_entry.township')}
+                                            control={Types.select}
+                                            options={township}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={12}>
                                         <FormControl
                                             name={INPUT_NAME.sender.address}
                                             label={t('waybill_entry.address')}
+                                            control={Types.textarea}
                                         />
                                     </AppGrid.InputGrid>
 
@@ -508,24 +515,31 @@ export default (props) => {
                                         <FormControl
                                             name={INPUT_NAME.receiver.region}
                                             label={t('waybill_entry.region')}
+                                            control={Types.select}
+                                            options={region}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.receiver.district}
                                             label={t('waybill_entry.district')}
+                                            control={Types.select}
+                                            options={district}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.receiver.township}
                                             label={t('waybill_entry.township')}
+                                            control={Types.select}
+                                            options={township}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={12}>
                                         <FormControl
                                             name={INPUT_NAME.receiver.address}
                                             label={t('waybill_entry.address')}
+                                            control={Types.textarea}
                                         />
                                     </AppGrid.InputGrid>
 

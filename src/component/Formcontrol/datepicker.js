@@ -5,7 +5,7 @@ import FormGroup from './FormGroup';
 
 const Datepicker = props => {
     const { name, label } = props;
-    const [filed, meta] = useField(props)
+    const [, meta] = useField(props)
 
     const hasError = meta.error && meta.touched
     return (
