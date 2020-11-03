@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Grid, makeStyles, Paper } from '@material-ui/core';
-import { AppGrid, FormControl, Table } from '../../../component';
+import {
+    makeStyles,
+} from '@material-ui/core';
+// import { AppGrid, FormControl, Table } from '../../../component';
 import TempLayout from '../TempLayout';
 
 
@@ -37,7 +39,7 @@ export default (props) => {
                     />
                 </AppGrid.GridScan>
             </Grid> */}
-            <TempLayout label="Start Scan"/>
+            <TempLayout label="Start Scan" />
         </div >
     );
 }

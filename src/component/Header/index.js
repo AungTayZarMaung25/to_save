@@ -3,7 +3,6 @@ import React from 'react';
 import {
     AppBar,
     Badge,
-    Icon,
     IconButton,
     makeStyles,
     Menu,
@@ -108,7 +107,6 @@ export default (props) => {
                             })
                         }
                         color="inherit"
-                        aria-label="menu"
                         onClick={props.Toggle}
                     >
                         <MenuIcon />
@@ -123,7 +121,6 @@ export default (props) => {
 
                         <IconButton
                             aria-label="change language"
-                            color={'inherit'}
                             aria-controls={LangId}
                             aria-haspopup={true}
                             onClick={(event) => setLangEl(event.currentTarget)}

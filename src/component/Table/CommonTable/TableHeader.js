@@ -20,10 +20,6 @@ export default ({
     // const { t } = useTranslation()
     const classes = useStyles()
 
-    const renderLabel = () => {
-
-    }
-
     return (
         <thead>
             <tr style={{

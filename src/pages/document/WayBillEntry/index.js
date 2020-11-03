@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Divider,
     Grid,
     makeStyles,
     Paper
@@ -330,7 +329,6 @@ export default (props) => {
             >
                 {
                     formik => {
-                        const { getFieldProps } = formik
 
                         return (
                             <Grid container spacing={1}>

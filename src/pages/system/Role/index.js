@@ -12,7 +12,7 @@ export default (props) => {
 
     useEffect(() => {
         dispatch(Action_Roles.action_fetch_roles())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
