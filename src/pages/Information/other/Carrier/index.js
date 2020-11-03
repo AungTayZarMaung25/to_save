@@ -9,7 +9,7 @@ export default (props) => {
 
     useEffect(() => {
         dispatch(Action_other_maintenance.action_fetch_carriers())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

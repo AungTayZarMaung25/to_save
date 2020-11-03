@@ -1,7 +1,7 @@
 const ACCESS_TOKEN = 'access-token';
-const REFRESH_TOKEN = 'refresh-token';
+// const REFRESH_TOKEN = 'refresh-token';
 
-const USER_INFO = 'userinfo';
+// const USER_INFO = 'userinfo';
 const USER_ID = 'userId';
 const USER_ROLE = 'user-role';
 

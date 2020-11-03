@@ -9,7 +9,7 @@ export default(props)=>{
 
     useEffect(()=>{
         dispatch(Action_information.action_fetch_destination())
-    },[])
+    },[dispatch])
 
     return (
         <div>

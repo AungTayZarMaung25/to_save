@@ -10,7 +10,7 @@ export default (props) => {
 
     useEffect(() => {
         dispatch(Action_other_maintenance.action_fetch_item_types());
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

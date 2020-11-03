@@ -21,7 +21,7 @@ axiosInstance.interceptors.response.use(
             return Promise.reject(error);
         }
 
-        const { config } = error
+        // const { config } = error
         if(error.response.status === 401) {
             wipe_login_data();
 

@@ -6,8 +6,7 @@ import {
     set_item_types,
     set_express_types,
     set_carriers,
-    set_payment_methods,
-    set_transporations
+    
 } from '../reducer.information';
 import { informationservice } from '../../service';
 import { checkStatus } from '../util';

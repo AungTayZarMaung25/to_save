@@ -8,7 +8,7 @@ export default(props) =>{
 
     useEffect(()=>{
         dispatch(Action_other_maintenance.action_fetch_express_types());
-    },[])
+    },[dispatch])
 
     return (
         <div>
