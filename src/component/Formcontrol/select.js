@@ -5,7 +5,7 @@ import FormGroup from './FormGroup';
 
 const Select = props => {
     const { name, label, options = [] ,placeholder = 'Select' } = props;
-    const [filed, meta] = useField(props)
+    const [, meta] = useField(props)
 
     const hasError = meta.error && meta.touched
     return (

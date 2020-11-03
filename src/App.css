@@ -18,6 +18,7 @@ button {
   outline: none;
 }
 
+textarea.inputField,
 input.inputField,
 select.inputField {
   width: 90%;
@@ -30,11 +31,13 @@ select.inputField {
   display: block;
 }
 
+textarea.inputField :focus,
 input.inputField :focus,
 select.inputField :focus {
   border: 1px solid;
 }
 
+textarea.inputError,
 input.inputError,
 select.inputError {
   border: 1px solid red;
