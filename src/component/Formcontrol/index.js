@@ -4,6 +4,7 @@ import Input from './input';
 import Datepicker from './datepicker';
 import Select from './select';
 import Textarea from './textarea';
+import Radio from './radio';
 
 export const Types = {
     radio: "radio",
@@ -17,7 +18,7 @@ const FormControl = (props) => {
     const { control } = props;
     switch (control) {
         case Types.radio:
-            return null
+            return <Radio {...props}/>
         case Types.checkbox:
             return null
         case Types.select:

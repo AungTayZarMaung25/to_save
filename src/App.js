@@ -55,17 +55,13 @@ export default () => {
             <Route exact path="/role-management" component={System.Roles} />
             {/** Scan */}
             <Route exact path="/arrival" component={Scan.ArrivalScan} />
-            <Route exact path="/bagging" component={Scan.BaggingScan} />
-            <Route exact path="/car" component={Scan.CarScan} />
             <Route exact path="/delivery" component={Scan.DeliveryScan} />
             <Route exact path="/dispatch" component={Scan.DispatchScan} />
             <Route exact path="/incoming" component={Scan.IncomingScan} />
             <Route exact path="/loading" component={Scan.LoadingScan} />
             <Route exact path="/outgoing" component={Scan.OutgoingScan} />
             <Route exact path="/problem" component={Scan.ProblemScan} />
-            <Route exact path="/proxy" component={Scan.ProxyScan} />
             <Route exact path="/receive" component={Scan.ReceivingScan} />
-            <Route exact path="/start" component={Scan.StartScan} />
             <Route exact path="/unloading" component={Scan.UnloadingScan} />
             <Route exact path="/unpacking" component={Scan.UnpackingScan} />
             
@@ -74,6 +70,7 @@ export default () => {
 
 
             {/** data & information */}
+            <Route exact path="/branch-maintenance" component={Information.Branch} />
             <Route exact path="/destination-maintenance" component={Information.Destination} />
 
             <Route exact path="/item-type-maintenance" component={Information.OtherInformation.ItemType} />

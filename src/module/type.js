@@ -2,3 +2,10 @@ export const START_LOADING = "START_LOADING"
 export const STOP_LOADING = "STOP_LOADING"
 export const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE"
 
+/**
+ * options
+ */
+export const SET_REGION_LIST = "SET_REGION_LIST"
+export const SET_DISTRICT_LIST = "SET_DISTRICT_LIST"
+export const SET_TOWNSHIP_LIST = "SET_TOWNSHIP_LIST"
+export const SET_BRANCH_LIST = "SET_BRANCH_LIST"

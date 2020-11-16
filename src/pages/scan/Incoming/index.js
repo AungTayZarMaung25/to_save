@@ -1,21 +1,35 @@
 import React from 'react';
 
-
-import {
-    makeStyles,
-} from '@material-ui/core';
-// import { AppGrid, FormControl, Table } from '../../../component';
+import { Grid, makeStyles, } from '@material-ui/core';
+import { AppGrid, FormControl, } from '../../../component';
 import TempLayout from '../TempLayout';
+import { Formik, } from 'formik';
+import * as Yup from 'yup';
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1
+        // flexGrow: 1
     },
     table_wrapper: {
         border: '2px solid lightgray'
     }
 }))
+
+const INPUT_NAME = {
+    destination: "destination",
+    waybill_no: "waybill_no",
+}
+
+const initialState = {
+    destination: '',
+    waybill_no: ''
+}
+
+const validateSchema = Yup.object({
+    destination: Yup.string(),
+    waybill_no: Yup.string().required(),
+})
 
 export default (props) => {
 
@@ -23,24 +37,48 @@ export default (props) => {
 
     return (
         <div className={classes.root}>
-            {/* <Grid container spacing={1}>
+            <TempLayout label="Arrival Scan">
+                <Formik
+                    initialValues={initialState}
+                    validationSchema={validateSchema}
+                    onSubmit={(value) => console.log(value)}
+                >
+                    {
+                        _ => {
+                            return (
+                                <Grid spacing={1} container>
+                                    <AppGrid.InputGrid col={6}>
+                                        <FormControl
+                                            name={INPUT_NAME.destination}
+                                            label="Next Station"
+                                        />
+                                    </AppGrid.InputGrid>
+                                    <AppGrid.InputGrid col={6}>
+                                        <FormControl
+                                            name={INPUT_NAME.waybill_no}
+                                            label="WayBill no"
+                                        />
+                                    </AppGrid.InputGrid>
+                                    {/* <AppGrid.InputGrid>
+                                        <FormControl
+                                            name={INPUT_NAME.weight}
+                                            label="Weight"
+                                            {...getFieldProps(INPUT_NAME.weight)}
+                                        />
+                                    </AppGrid.InputGrid> */}
 
-                <AppGrid.GridScan col={5}>
-                    <AppGrid.InputGrid>
-                        
-                    </AppGrid.InputGrid>
-                </AppGrid.GridScan>
+                                </Grid>
+                            )
+                        }
+                    }
 
 
-                <AppGrid.GridScan border>
-                    <Table.CommonTable
-                        columns={Table.SCAN_HEADER_COLUMN.COLUMNS_SCAN_DATA}
-                        rows={[]}
-                        showAll={false}
-                    />
-                </AppGrid.GridScan>
-            </Grid> */}
-            <TempLayout label="Incoming Scan"/>
+                </Formik>
+                <br />
+                <br />
+                <button type="submit">ADD</button>
+                {/* </form> */}
+            </TempLayout>
         </div >
     );
 }

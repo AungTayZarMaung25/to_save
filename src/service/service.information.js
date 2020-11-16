@@ -5,6 +5,21 @@ import { httpService } from '.';
  * Branch maintenance
  */
 
+export async function getBranch({
+    branches = []
+}) {
+    let url = `/branches/getbranch?`
+
+    if (Array.isArray(branches) && branches.length > 0) {
+        branches.forEach(b => {
+            url += `branches[]=${b}&`
+        })
+    }
+
+    return await httpService.get(url)
+
+}
+
 export async function getDestination() {
     return await httpService.get('/destinations/getdestination');
 }

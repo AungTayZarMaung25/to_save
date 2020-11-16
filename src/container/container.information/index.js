@@ -1,3 +1,4 @@
+import Branch from './container.branch'
 import Destination from './container.destination';
 
 /**
@@ -14,5 +15,6 @@ export const OtherInformation = {
 }
 
 export {
+    Branch,
     Destination
 }

@@ -21,17 +21,21 @@ const AppButton = (props) => {
     return (
         <Button
             variant={variant}
-            color={color} {...props}>
-            {prop.children}
+            color={color} 
+            onClick={props.onClick}
+            {...props}>
+            {props.children}
         </Button>
     )
 }
 
-// AppButton.propTypes = {
-//     variant: PropTypes.oneOf([
-//         ButtonType.variant.contained,
-//         ButtonType.variant.outlined
-//     ]),
-// }
+AppButton.propTypes = {
+    variant: PropTypes.oneOf([
+        ButtonType.variant.contained,
+        ButtonType.variant.outlined
+    ]),
+    color: PropTypes.string,
+    onClick: PropTypes.func
+}
 
 export default AppButton;
