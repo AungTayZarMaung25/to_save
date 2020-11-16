@@ -16,7 +16,7 @@ import {
 import _ from 'lodash';
 
 import DrawerItem from './DrawerItem';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     ItemCurrent: {
         backgroundColor: 'gray'
     },
-    user_name : {
+    user_name: {
         fontWeight: "bold"
     },
     role_text: {
@@ -149,7 +149,10 @@ const DrawerBar = ({
     }
 
     const handler = (children, level = 2) => {
-        if (Array.isArray(children))
+        if (Array.isArray(children)) {
+
+            // const validPermission = children.filter(child => child.status === 1)
+
             return children.map((subOption, index) => (
                 <div key={subOption.name + index}
                     className={
@@ -170,7 +173,7 @@ const DrawerBar = ({
                     />
                 </div>
             ))
-
+        }
     }
 
     return (

@@ -136,6 +136,30 @@ const township = [
         key: 'Chan Mya Thar Si'
     }
 ]
+
+const item_type = [
+    {
+        value: 1,
+        key:'food'
+    },
+    {
+        value: 2,
+        key:'paper'
+    },
+    {
+        value: 3,
+        key:'electronic'
+    },
+    {
+        value: 4,
+        key:'clothing'
+    },
+    {
+        value: 5,
+        key:'car spare parts'
+    },
+]
+
 const EntryGrid = ({
     header,
     headerclass,
@@ -160,13 +184,8 @@ const INPUT_NAME = {
     basic: {
         waybill_no: 'waybill_no',
         destination: 'destination',
-        pickup: 'pickup',
-        shipping_time: 'shipping_time',
         shipment_type: 'shipment_type',
         shipping_mode: 'shipping_mode',
-        carrier: 'carrier',
-        transferred_waybill: 'transferred_waybill',
-        destination_station: 'destination_station',
     },
     sender: {
         customer_type: 'customer_type',
@@ -191,14 +210,18 @@ const INPUT_NAME = {
         address: 'address_receiver'
     },
     item_information: {
-        item_type: '',
-        item_name: '',
-        count: 1,
-        weight: 0,
-        dimension: '',
-        volume: 0.0,
-        receipt: '',
-        remark: '',
+        item_type: 'item_type',
+        item_name: 'item_name',
+        count: 'count',
+        weight: 'weight',
+        dimension: {
+            length: 'length',
+            width: 'width',
+            height: 'height'
+        },
+        volume: 'volume',
+        receipt: 'receipt',
+        remark: 'remark',
     },
     cost_information: {
         payment_method: 'payment_method',
@@ -251,7 +274,11 @@ const initialState = {
         item_name: '',
         count: 1,
         weight: 0,
-        dimension: '',
+        dimension: {
+            length: '',
+            weight: '',
+            height: ''
+        },
         volume: 0.0,
         receipt: '',
         remark: '',
@@ -300,6 +327,18 @@ const validationSchema = Yup.object({
     /**
      * Item Information
      */
+    item_type: Yup.string(),
+    item_name: Yup.string(),
+    count: Yup.number(),
+    weight: Yup.number().required(),
+    dimension: Yup.object({
+        length: Yup.number(),
+        width: Yup.number(),
+        height: Yup.number(),
+    }),
+    volume: Yup.number(),
+    receipt: Yup.string(),
+    remark: Yup.string(),
 
     /**
      * Cost Information
@@ -352,19 +391,6 @@ export default (props) => {
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={2}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.pickup}
-                                            label={t('waybill_entry.pickup')}
-                                        />
-                                    </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={2}>
-                                        <FormControl
-                                            name={INPUT_NAME.basic.shipping_time}
-                                            label={t('waybill_entry.shipping_time')}
-                                            control={Types.date}
-                                        />
-                                    </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={2}>
-                                        <FormControl
                                             name={INPUT_NAME.basic.shipment_type}
                                             label={t('waybill_entry.shipment_type')}
                                             control={Types.select}
@@ -377,28 +403,6 @@ export default (props) => {
                                             label={t('waybill_entry.shipping_mode')}
                                             control={Types.select}
                                             options={shipping_mode}
-                                        />
-                                    </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={2}>
-                                        <FormControl
-                                            name={INPUT_NAME.basic.carrier}
-                                            label={t('waybill_entry.carrier')}
-                                            control={Types.select}
-                                            options={carrier}
-                                        />
-                                    </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={2}>
-                                        <FormControl
-                                            name={INPUT_NAME.basic.transferred_waybill}
-                                            label={t('waybill_entry.transferred_waybill')}
-                                        />
-                                    </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={2}>
-                                        <FormControl
-                                            name={INPUT_NAME.basic.destination_station}
-                                            label={t('waybill_entry.destination_station')}
-                                            control={Types.select}
-                                            options={destination}
                                         />
                                     </AppGrid.InputGrid>
                                 </EntryGrid>
@@ -427,12 +431,12 @@ export default (props) => {
                                             label={t('waybill_entry.phone')}
                                         />
                                     </AppGrid.InputGrid>
-                                    <AppGrid.InputGrid col={6}>
+                                    {/* <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.sender.id_card}
                                             label={t('waybill_entry.id_card')}
                                         />
-                                    </AppGrid.InputGrid>
+                                    </AppGrid.InputGrid> */}
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
                                             name={INPUT_NAME.sender.post_code}
@@ -551,19 +555,21 @@ export default (props) => {
                                 >
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.item_type}
                                             label={t('waybill_entry.item_type')}
+                                            control={Types.select}
+                                            options={item_type}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.item_name}
                                             label={t('waybill_entry.item_name')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.count}
                                             label={t('waybill_entry.count')}
                                             type={'number'}
                                             min={0}
@@ -571,7 +577,7 @@ export default (props) => {
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={3}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.weight}
                                             label={t('waybill_entry.weight')}
                                             type={'number'}
                                             min={0}
@@ -580,7 +586,7 @@ export default (props) => {
                                     <Grid xl={9} lg={9} md={9} sm={12} xs={12} spacing={0} container >
                                         <AppGrid.InputGrid col={3}>
                                             <FormControl
-                                                name={INPUT_NAME.basic.waybill_no}
+                                                name={INPUT_NAME.item_information.dimension.length}
                                                 label={t('waybill_entry.dimension.length')}
                                                 type={'number'}
                                                 min={0}
@@ -588,7 +594,7 @@ export default (props) => {
                                         </AppGrid.InputGrid>
                                         <AppGrid.InputGrid col={3}>
                                             <FormControl
-                                                name={INPUT_NAME.basic.waybill_no}
+                                                name={INPUT_NAME.item_information.dimension.width}
                                                 label={t('waybill_entry.dimension.width')}
                                                 type={'number'}
                                                 min={0}
@@ -596,7 +602,7 @@ export default (props) => {
                                         </AppGrid.InputGrid>
                                         <AppGrid.InputGrid col={3}>
                                             <FormControl
-                                                name={INPUT_NAME.basic.waybill_no}
+                                                name={INPUT_NAME.item_information.dimension.height}
                                                 label={t('waybill_entry.dimension.height')}
                                                 type={'number'}
                                                 min={0}
@@ -604,7 +610,7 @@ export default (props) => {
                                         </AppGrid.InputGrid>
                                         <AppGrid.InputGrid col={3}>
                                             <FormControl
-                                                name={INPUT_NAME.basic.waybill_no}
+                                                name={INPUT_NAME.item_information.volume}
                                                 label={t('waybill_entry.volume')}
                                                 type={'number'}
                                                 min={0}
@@ -613,13 +619,13 @@ export default (props) => {
                                     </Grid>
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.receipt}
                                             label={t('waybill_entry.receipt')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.basic.waybill_no}
+                                            name={INPUT_NAME.item_information.remark}
                                             label={t('waybill_entry.remark')}
                                         />
                                     </AppGrid.InputGrid>

@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import * as lang from './lang';
 
 /**
- *  TODO - anyone - if you want to add some value or keyword,plz notice and sort the value alphabetically
+ *  TODO tsa - anyone - if you want to add some value or keyword,plz notice and sort the value alphabetically
  *  use this link 
  *  easy link to sort json :  https://novicelab.org/jsonabc/
  */
@@ -34,7 +34,26 @@ i18n.use(LanguageDetector)
                         "title_text": "Delivery management system"
                     },
                     "sidebar": lang.sidebar_en,
-                    "waybill_entry": lang.waybill_entry_en
+                    "waybill_entry": lang.waybill_entry_en,
+
+                    /**
+                     * common
+                     */
+                    "branch": "branch",
+                    "distination": "destination",
+                    "region": "region",
+                    "district": "district",
+                    "township": "township",
+                    "submit": "submit",
+                    "cancel": "cancel",
+                    "add": "add",
+                    "search": "",
+                    "delete": "",
+                    "updated_at": "",
+                    "created_at": "",
+                    "updated_by": "",
+                    "created_by": "",
+
                 }
             },
 
@@ -44,7 +63,25 @@ i18n.use(LanguageDetector)
                         "title_text": "配送管理系统"
                     },
                     "sidebar": lang.sidebar_zh,
-                    "waybill_entry": lang.waybill_entry_zh
+                    "waybill_entry": lang.waybill_entry_zh,
+
+                    /**
+                     * common
+                     */
+                    "branch": "",
+                    "distination": "",
+                    "region": "",
+                    "district": "",
+                    "township": "",
+                    "submit": "",
+                    "cancel": "",
+                    "add": "",
+                    "search": "",
+                    "delete": "",
+                    "updated_at": "",
+                    "created_at": "",
+                    "updated_by": "",
+                    "created_by": "",
                 }
             },
 

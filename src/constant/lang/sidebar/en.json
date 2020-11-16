@@ -4,7 +4,7 @@
     "announcement_management": "Announcement Management",
     "scan": "Scan",
     "scan_incoming": "Incoming Scan",
-    "scan_outgoing": "Outgoing Scan",
+    "scan_outgoing": "Transit Scan",
     "scan_arrival": "Arrival Scan",
     "scan_dispatch": "Dispatch Scan",
     "scan_problem": "Problem Scan",

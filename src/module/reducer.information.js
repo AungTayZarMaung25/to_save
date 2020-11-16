@@ -1,7 +1,8 @@
 import * as common from './type';
 
 const types = {
-
+    SET_BRANCH_TREE: 'SET_BRANCH_TREE',
+    UPDATE_BRANCH_TREE: 'UPDATE_BRANCH_TREE',
     SET_DESTINATION: 'SET_DESTINATION',
 
     /**
@@ -19,6 +20,7 @@ export const initialState = {
     isLoading: false,
     errorMessage: '',
 
+    branchTree: [],
     destinations: {},
     /**
      * other maintenance
@@ -40,17 +42,28 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case common.START_LOADING:
             return {
-                ..._getCommonState(state)
+                ..._getCommonState(state),
+                isLoading: true
             }
         case common.STOP_LOADING:
             return {
                 ..._getCommonState(state),
-                isLoading: false
             }
         case common.SET_ERROR_MESSAGE:
             return {
                 ..._getCommonState(state),
                 errorMessage: action.payload
+            }
+
+        case types.SET_BRANCH_TREE:
+            return {
+                ..._getCommonState(state),
+                branchTree: action.payload
+            }
+        case types.UPDATE_BRANCH_TREE:
+            return {
+                ..._getCommonState(state),
+
             }
         case types.SET_DESTINATION:
             return {
@@ -113,6 +126,11 @@ export const stop_loading = () => ({
 export const set_error_message = (message = '') => ({
     type: common.SET_ERROR_MESSAGE,
     payload: message
+})
+
+export const set_branch_tree = (data = []) => ({
+    type: types.SET_BRANCH_TREE,
+    payload: data
 })
 
 export const set_destination = (data = []) => ({
