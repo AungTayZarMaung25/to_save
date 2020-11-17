@@ -27,7 +27,7 @@
     "address": "address",
     "item_type": "item type",
     "item_name": "item name",
-    "count": "",
+    "qty": "",
     "weight": "",
     "dimension": {
         "length": "Length",

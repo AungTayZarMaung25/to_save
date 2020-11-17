@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles,
     Paper
 } from '@material-ui/core';
 import * as Yup from 'yup'
-
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
+
+
 import { AppGrid, FormControl, Types } from '../../../component';
+import { useDispatch } from 'react-redux';
+import { Option_Action } from '../../../module';
+import UserAddress from './useraddress';
+import { INPUT_NAME, initialState } from './constants'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,134 +37,6 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const shipment_type = [
-    {
-        value: 1,
-        key: 'Shipment 1'
-    },
-    {
-        value: 2,
-        key: 'Shipment 2'
-    },
-    {
-        value: 3,
-        key: 'Shipment 3'
-    }
-]
-
-const shipping_mode = [
-    {
-        value: 1,
-        key: 'Shipping 1'
-    },
-    {
-        value: 2,
-        key: 'Shipping 2'
-    },
-    {
-        value: 3,
-        key: 'Shipping 3'
-    }
-]
-
-const carrier = [
-    {
-        value: 1,
-        key: 'carrier 1'
-    },
-    {
-        value: 2,
-        key: 'carrier 2'
-    },
-    {
-        value: 3,
-        key: 'carrier 3'
-    }
-]
-
-const destination = [
-    {
-        value: 1,
-        key: 'dest 1'
-    },
-    {
-        value: 2,
-        key: 'dest 2'
-    },
-    {
-        value: 3,
-        key: 'dest 3'
-    }
-]
-
-const region = [
-    {
-        value: 1,
-        key: 'Mandalay'
-    },
-    {
-        value: 2,
-        key: 'Yangon'
-    },
-    {
-        value: 3,
-        key: 'Pago'
-    }
-]
-
-const district = [
-    {
-        value: 1,
-        key: 'Mandalay'
-    },
-    {
-        value: 2,
-        key: 'Pyin Oo Lwin'
-    },
-    {
-        value: 3,
-        key: 'Kyaut Se'
-    }
-]
-
-const township = [
-    {
-        value: 1,
-        key: 'Pyi Gyi Tagon'
-    },
-    {
-        value: 2,
-        key: 'Aung Myay Thar San'
-    },
-    {
-        value: 3,
-        key: 'Chan Mya Thar Si'
-    }
-]
-
-const item_type = [
-    {
-        value: 1,
-        key:'food'
-    },
-    {
-        value: 2,
-        key:'paper'
-    },
-    {
-        value: 3,
-        key:'electronic'
-    },
-    {
-        value: 4,
-        key:'clothing'
-    },
-    {
-        value: 5,
-        key:'car spare parts'
-    },
-]
-
 const EntryGrid = ({
     header,
     headerclass,
@@ -180,120 +57,6 @@ const EntryGrid = ({
         </Grid>
     )
 
-const INPUT_NAME = {
-    basic: {
-        waybill_no: 'waybill_no',
-        destination: 'destination',
-        shipment_type: 'shipment_type',
-        shipping_mode: 'shipping_mode',
-    },
-    sender: {
-        customer_type: 'customer_type',
-        sender: 'sender',
-        phone: 'phone',
-        id_card: 'id_card',
-        post_code: 'post_code',
-        region: 'region',
-        district: 'district',
-        township: 'township',
-        address: 'address'
-    },
-    receiver: {
-        receiver: 'receiver',
-        phone: 'phone_receiver',
-        company: 'company',
-        id_card: 'id_card_receiver',
-        post_code: 'post_code_receiver',
-        region: 'region_receiver',
-        district: 'district_receiver',
-        township: 'township_receiver',
-        address: 'address_receiver'
-    },
-    item_information: {
-        item_type: 'item_type',
-        item_name: 'item_name',
-        count: 'count',
-        weight: 'weight',
-        dimension: {
-            length: 'length',
-            width: 'width',
-            height: 'height'
-        },
-        volume: 'volume',
-        receipt: 'receipt',
-        remark: 'remark',
-    },
-    cost_information: {
-        payment_method: 'payment_method',
-        insurance_fee: 'insurance_fee',
-        service_fee: 'service_fee',
-        other_fees: 'other_fees',
-        cash_collection: 'cash_collection',
-        bank_information: 'bank_information',
-        freight: 'freight',
-        total: 'total',
-    }
-}
-
-const initialState = {
-    basic: {
-        waybill_no: '',
-        destination: '',
-        pickup: '',
-        shipping_time: new Date(),
-        shipment_type: '',
-        shipping_mode: '',
-        carrier: '',
-        transferred_waybill: '',
-        destination_station: '',
-    },
-    sender_state: {
-        customer_type: '',
-        sender: '',
-        phone: '',
-        id_card: '',
-        post_code: '',
-        region: '',
-        district: '',
-        township: '',
-        address: ''
-    },
-    receiver_state: {
-        receiver: '',
-        phone: '',
-        company: '',
-        id_card: '',
-        post_code: '',
-        region: '',
-        district: '',
-        township: '',
-        address: ''
-    },
-    item_information: {
-        item_type: '',
-        item_name: '',
-        count: 1,
-        weight: 0,
-        dimension: {
-            length: '',
-            weight: '',
-            height: ''
-        },
-        volume: 0.0,
-        receipt: '',
-        remark: '',
-    },
-    cost_information: {
-        payment_method: '',
-        insurance_fee: 0,
-        service_fee: 0,
-        other_fees: 0,
-        cash_collection: 0,
-        bank_information: '',
-        freight: 0,
-        total: 0
-    }
-}
 
 const validationSchema = Yup.object({
     /**
@@ -313,30 +76,38 @@ const validationSchema = Yup.object({
      * Sender Information
      */
     customer_type: Yup.string(),
-    sender: Yup.string(),
-    phone: Yup.string(),
+    sender: Yup.string().required().min(3),
+    phone: Yup.string().required().min(9),
     id_card: Yup.string(),
-    region: Yup.string(),
-    distrit: Yup.string(),
-    township: Yup.string(),
-    address: Yup.string(),
+    region: Yup.string().required(),
+    district: Yup.string().required(),
+    township: Yup.string().required(),
+    address: Yup.string().required().min(10),
+    
     /**
      * Receiver Information
      */
-
+    receiver: Yup.string().required().min(3),
+    phone_receiver: Yup.string().required().min(9),
+    company: Yup.string(),
+    id_card_receiver: Yup.string(),
+    post_code_receiver: Yup.string(),
+    region_receiver: Yup.string().required(),
+    district_receiver: Yup.string().required(),
+    township_receiver: Yup.string().required(),
+    address_receiver: Yup.string().required().min(10),
     /**
      * Item Information
      */
-    item_type: Yup.string(),
+    item_type: Yup.string().required(),
     item_name: Yup.string(),
-    count: Yup.number(),
-    weight: Yup.number().required(),
-    dimension: Yup.object({
-        length: Yup.number(),
-        width: Yup.number(),
-        height: Yup.number(),
-    }),
-    volume: Yup.number(),
+    qty: Yup.number().required().min(1),
+    weight: Yup.number().required().min(0),
+    length: Yup.number().min(0),
+    width: Yup.number().min(0),
+    height: Yup.number().min(0),
+    // dimension: Yup.object({}),
+    volume: Yup.number().min(0),
     receipt: Yup.string(),
     remark: Yup.string(),
 
@@ -344,18 +115,61 @@ const validationSchema = Yup.object({
      * Cost Information
      */
     payment_method: Yup.string().required(),
-    insurance_fee: Yup.number(),
-    service_fee: Yup.number(),
-    other_fees: Yup.number(),
-    cash_collection: Yup.number(),
+    insurance_fee: Yup.number().min(0),
+    service_fee: Yup.number().min(0),
+    other_fees: Yup.number().min(0),
+    cash_collection: Yup.number().min(0),
     bank_information: Yup.number(),
-    freight: Yup.number().required(),
-    total: Yup.number().required(),
+    freight: Yup.number().required().min(1),
+    total: Yup.number().required().min(1),
 })
 
 export default (props) => {
 
     const { t } = useTranslation()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        /**
+         * region list
+         */
+        dispatch(Option_Action.action_fetch_region_option());
+        /**
+         * item type
+         */
+        dispatch(Option_Action.action_fetch_itemtype_option());
+        /**
+         * express or shipment type
+         */
+        dispatch(Option_Action.action_fetch_shippingtype_option())
+        /**
+         * shipping mode
+         */
+        dispatch(Option_Action.action_fetch_shipping_mode_option())
+        /**
+         * payment type
+         */
+        dispatch(Option_Action.action_fetch_paymenttypes_option())
+
+    }, [dispatch])
+
+    /**
+     * creating user address instances
+     */
+    let senderAddress = new UserAddress()
+    let receiverAddress = new UserAddress()
+
+    /**
+     * On Region Change
+     */
+    const onChangeRegion_Sender = (region_id) => senderAddress.setdistrictList(region_id)
+    const onChangeRegion_Receiver = (region_id) => receiverAddress.setdistrictList(region_id)
+
+    /**
+     * On Region District
+     */
+    const onChangeDistrict_Sender = (district_id) => senderAddress.settownshipList(district_id)
+    const onChangeDistrict_Receiver = (district_id) => receiverAddress.settownshipList(district_id)
 
     const classes = useStyles()
 
@@ -394,7 +208,7 @@ export default (props) => {
                                             name={INPUT_NAME.basic.shipment_type}
                                             label={t('waybill_entry.shipment_type')}
                                             control={Types.select}
-                                            options={shipment_type}
+                                            options={props.express_type || []}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={2}>
@@ -402,7 +216,7 @@ export default (props) => {
                                             name={INPUT_NAME.basic.shipping_mode}
                                             label={t('waybill_entry.shipping_mode')}
                                             control={Types.select}
-                                            options={shipping_mode}
+                                            options={props.shipping_mode || []}
                                         />
                                     </AppGrid.InputGrid>
                                 </EntryGrid>
@@ -415,61 +229,71 @@ export default (props) => {
                                 >
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.customer_type}
+                                            name={INPUT_NAME.sender_state.customer_type}
                                             label={t('waybill_entry.customer_type')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.sender}
+                                            name={INPUT_NAME.sender_state.sender}
                                             label={t('waybill_entry.sender')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.phone}
+                                            name={INPUT_NAME.sender_state.phone}
                                             label={t('waybill_entry.phone')}
                                         />
                                     </AppGrid.InputGrid>
                                     {/* <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.id_card}
+                                            name={INPUT_NAME.sender_state.id_card}
                                             label={t('waybill_entry.id_card')}
                                         />
                                     </AppGrid.InputGrid> */}
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.post_code}
+                                            name={INPUT_NAME.sender_state.post_code}
                                             label={t('waybill_entry.post_code')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.region}
+                                            name={INPUT_NAME.sender_state.region}
                                             label={t('waybill_entry.region')}
                                             control={Types.select}
-                                            options={region}
+                                            options={props.region || []}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);
+                                                onChangeRegion_Sender(e.target.value)
+                                                // formik.setFieldValue(INPUT_NAME.township, '')
+                                            }}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.district}
+                                            name={INPUT_NAME.sender_state.district}
                                             label={t('waybill_entry.district')}
                                             control={Types.select}
-                                            options={district}
+                                            options={senderAddress.getdistrictList() || []}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);
+                                                onChangeDistrict_Sender(e.target.value)
+                                                // formik.setFieldValue(INPUT_NAME.township, '')
+                                            }}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.township}
+                                            name={INPUT_NAME.sender_state.township}
                                             label={t('waybill_entry.township')}
                                             control={Types.select}
-                                            options={township}
+                                            options={senderAddress.gettownshipList() || []}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={12}>
                                         <FormControl
-                                            name={INPUT_NAME.sender.address}
+                                            name={INPUT_NAME.sender_state.address}
                                             label={t('waybill_entry.address')}
                                             control={Types.textarea}
                                         />
@@ -485,61 +309,71 @@ export default (props) => {
                                 >
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.receiver}
+                                            name={INPUT_NAME.receiver_state.receiver}
                                             label={t('waybill_entry.receiver')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.phone}
+                                            name={INPUT_NAME.receiver_state.phone}
                                             label={t('waybill_entry.phone')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.company}
+                                            name={INPUT_NAME.receiver_state.company}
                                             label={t('waybill_entry.company')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.id_card}
+                                            name={INPUT_NAME.receiver_state.id_card}
                                             label={t('waybill_entry.id_card')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.post_code}
+                                            name={INPUT_NAME.receiver_state.post_code}
                                             label={t('waybill_entry.post_code')}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.region}
+                                            name={INPUT_NAME.receiver_state.region}
                                             label={t('waybill_entry.region')}
                                             control={Types.select}
-                                            options={region}
+                                            options={props.region || []}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);
+                                                onChangeRegion_Receiver(e.target.value)
+                                                // formik.setFieldValue(INPUT_NAME.township, '')
+                                            }}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.district}
+                                            name={INPUT_NAME.receiver_state.district}
                                             label={t('waybill_entry.district')}
                                             control={Types.select}
-                                            options={district}
+                                            options={receiverAddress.getdistrictList() || []}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);
+                                                onChangeDistrict_Receiver(e.target.value)
+                                                // formik.setFieldValue(INPUT_NAME.township, '')
+                                            }}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={6}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.township}
+                                            name={INPUT_NAME.receiver_state.township}
                                             label={t('waybill_entry.township')}
                                             control={Types.select}
-                                            options={township}
+                                            options={receiverAddress.gettownshipList() || []}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={12}>
                                         <FormControl
-                                            name={INPUT_NAME.receiver.address}
+                                            name={INPUT_NAME.receiver_state.address}
                                             label={t('waybill_entry.address')}
                                             control={Types.textarea}
                                         />
@@ -558,7 +392,7 @@ export default (props) => {
                                             name={INPUT_NAME.item_information.item_type}
                                             label={t('waybill_entry.item_type')}
                                             control={Types.select}
-                                            options={item_type}
+                                            options={props.itemtype || []}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>
@@ -569,10 +403,11 @@ export default (props) => {
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>
                                         <FormControl
-                                            name={INPUT_NAME.item_information.count}
-                                            label={t('waybill_entry.count')}
+                                            name={INPUT_NAME.item_information.qty}
+                                            label={t('waybill_entry.qty')}
                                             type={'number'}
-                                            min={0}
+                                            min={1}
+                                            defaultValue={1}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={3}>
@@ -641,6 +476,8 @@ export default (props) => {
                                         <FormControl
                                             name={INPUT_NAME.cost_information.payment_method}
                                             label={t('waybill_entry.payment_method')}
+                                            control={Types.select}
+                                            options={props.payment_type || []}
                                         />
                                     </AppGrid.InputGrid>
                                     <AppGrid.InputGrid col={4}>

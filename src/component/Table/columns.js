@@ -188,13 +188,13 @@ export const COLUMN_DESTINATIONS = [
     {
         field: 'createdAt',
         header: 'created_at',
-        check: true,
+        check: false,
 
     },
     {
         field: 'updatedAt',
         header: 'updated_at',
-        check: true,
+        check: false,
     },
     {
         field: 'update',
@@ -206,7 +206,7 @@ export const COLUMN_DESTINATIONS = [
         field: 'delete',
         header: '-',
         check: true,
-        content: data => <button className="danger" style={{ backgroundColor: 'danger' }}>delete</button>
+        content: data => <button className="danger" style={{ backgroundColor: 'darednger' }}>delete</button>
     }
 ]
 

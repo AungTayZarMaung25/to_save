@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Table } from '../../../component';
+// import { Table } from '../../../component';
 import { Action_information } from '../../../module/action.information';
 
 export default(props)=>{

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Grid, makeStyles, } from '@material-ui/core';
-import { AppGrid, FormControl, Types, } from '../../../component';
+import { AppGrid, FormControl, } from '../../../component';
 import TempLayout from '../TempLayout';
 import { Formik, } from 'formik';
 import * as Yup from 'yup';
@@ -33,12 +33,12 @@ const validateSchema = Yup.object({
     waybill_no: Yup.string().required(),
 })
 
-const OwerType = [
-    {
-        key:"Owner",
-        value: ""
-    }
-]
+// const OwerType = [
+//     {
+//         key:"Owner",
+//         value: ""
+//     }
+// ]
 
 export default (props) => {
 

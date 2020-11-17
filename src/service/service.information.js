@@ -39,3 +39,13 @@ export async function getCarriers() {
     return await httpService.get('/carriers/getcarrier');
 }
 
+/**
+ * post and create data
+ */
+
+ /**
+  * branch
+  */
+ export async function create_destination(data){
+     return await httpService.post('/destinations/createdestination',data);
+ }
