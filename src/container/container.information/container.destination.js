@@ -7,6 +7,7 @@ export default connect(
         errorMessage: state.information.errorMessage,
         destinations: state.information.destinations,
 
+        branch: state.option.branch_list,
         region: state.option.region_list,
         district: state.option.district_list,
         township: state.option.township_list

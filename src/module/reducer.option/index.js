@@ -4,12 +4,14 @@ export const initialState = {
     isLoading: false,
     errorMessage: '',
 
-    brach_list: [],
+    branch_list: [],
     region_list: [],
     district_list: [],
     township_list: [],
-
-
+    itemtype_list: [],
+    payment_type_list: [],
+    shipping_type_list: [],
+    shipping_mode_list: []
 }
 
 /**
@@ -29,7 +31,7 @@ export default (state = initialState, action) => {
         case common.SET_BRANCH_LIST: {
             return {
                 ..._getCommonState(state),
-                brach_list: action.payload
+                branch_list: action.payload
             }
         }
         case common.SET_REGION_LIST: {
@@ -48,6 +50,30 @@ export default (state = initialState, action) => {
             return {
                 ..._getCommonState(state),
                 township_list: action.payload
+            }
+        }
+        case common.SET_ITEMTYPE_LIST: {
+            return {
+                ..._getCommonState(state),
+                itemtype_list: action.payload
+            }
+        }
+        case common.SET_PAYMENT_TYPE_LIST: {
+            return {
+                ..._getCommonState(state),
+                payment_type_list: action.payload
+            }
+        }
+        case common.SET_SHIPPING_TYPE_LIST: {
+            return {
+                ..._getCommonState(state),
+                shipping_type_list: action.payload
+            }
+        }
+        case common.SET_SHIPPING_MODE_LIST: {
+            return {
+                ..._getCommonState(state),
+                shipping_mode_list: action.payload
             }
         }
         default:
@@ -91,5 +117,25 @@ export const set_district_list = (data = []) => ({
 
 export const set_township_list = (data = []) => ({
     type: common.SET_TOWNSHIP_LIST,
+    payload: data
+})
+
+export const set_itemtype_list = (data = []) => ({
+    type: common.SET_ITEMTYPE_LIST,
+    payload: data
+})
+
+export const set_payment_type_list = (data = []) => ({
+    type: common.SET_PAYMENT_TYPE_LIST,
+    payload: data
+})
+
+export const set_shipping_type_list = (data = []) => ({
+    type: common.SET_SHIPPING_TYPE_LIST,
+    payload: data
+})
+
+export const set_shipping_mode_list = (data = []) => ({
+    type: common.SET_SHIPPING_MODE_LIST,
     payload: data
 })

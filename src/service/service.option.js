@@ -27,3 +27,32 @@ export async function OptionTownship(district_id) {
 export async function OptionBranch() {
     return await httpService.get(`/branches/getoption`)
 }
+
+/**
+ * express type
+ */
+export async function OptionExpressType() {
+    return await httpService.get(`/expresstypes/getoption`)
+}
+
+/**
+ * shipping mode
+ */
+export async function OptionShippingMode() {
+    return await httpService.get(`/shippingmodes/getoption`)
+}
+
+/**
+ * payment type
+ */
+export async function OptionPaymentType() {
+    return await httpService.get(`/payments/getoption`)
+}
+
+
+/**
+ * itemtype
+ */
+export async function OptionItemType() {
+    return await httpService.get(`/itemtypes/getoption`)
+}

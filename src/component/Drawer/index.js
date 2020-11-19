@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
     },
     drawerOpen: {
         width: drawerWidth,
@@ -60,28 +60,29 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar
     },
     Collapse: {
-        paddingLeft: 10
+        paddingLeft: 2
     },
     listItemText: {
         wordBreak: "break-word",
         maxWidth: 180,
         whiteSpace: "normal"
     },
-    leftBorder: {
-        borderLeft: '2px solid red !important'
+    rightBorder: {
+        borderRight: '2px solid red !important',
+        marginRight: 2
     },
     ItemBorder: {
         borderTop: '1px solid #e9e9ef !important',
     },
     ItemCurrent: {
-        backgroundColor: 'gray'
+        backgroundColor: '#083265',
     },
     user_name: {
         fontWeight: "bold"
     },
     role_text: {
         fontSize: 14
-    }
+    },
 }))
 
 const DrawerBar = ({
@@ -123,7 +124,8 @@ const DrawerBar = ({
             wordBreak: "break-word",
             maxWidth: 180,
             whiteSpace: "normal",
-            fontSize: 14
+            fontSize: '0.8rem',
+            fontWeight:'bold'
         }
         :
         {}
@@ -158,13 +160,16 @@ const DrawerBar = ({
                     className={
                         clsx(classes.ItemBorder,
                             {
-                                [classes.leftBorder]: menu[subOption.name],
+                                [classes.rightBorder]: menu[subOption.name],
                                 [classes.ItemCurrent]: pathName === subOption.url
                             })
                     }
                 >
                     <DrawerItem
-                        typoProps={typo_Props}
+                        typoProps={{
+                            ...typo_Props,
+                            color: (pathName === subOption.url) && '#FFF'
+                        }}
                         subOption={subOption}
                         expand={menu[subOption.name]}
                         recursiveHandler={() => handler(subOption.children)}

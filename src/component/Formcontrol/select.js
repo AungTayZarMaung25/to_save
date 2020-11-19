@@ -16,8 +16,9 @@ const Select = props => {
             <Field
                 as="select"
                 name={name}
-                // type={''}
                 className={`inputField ${hasError ? 'inputError' : ''}`}
+                // onChange={props.onChange}
+                {...props}
             >
                 <option value="">{`${placeholder} ${label}`}</option>
                 {

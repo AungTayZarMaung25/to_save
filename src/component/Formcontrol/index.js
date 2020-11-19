@@ -34,8 +34,8 @@ const FormControl = (props) => {
 FormControl.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
-    touched: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired,
-    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select]),
+    touched: PropTypes.object,
+    errors: PropTypes.object,
+    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select,Types.textarea,Types.date]),
 }
 export default FormControl
