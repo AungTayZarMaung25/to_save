@@ -418,7 +418,7 @@ export default (props) => {
                                             min={0}
                                         />
                                     </AppGrid.InputGrid>
-                                    <Grid xl={9} lg={9} md={9} sm={12} xs={12} spacing={0} container >
+                                    <Grid xl={9} lg={9} md={9} sm={12} xs={12} spacing={0} container item>
                                         <AppGrid.InputGrid col={3}>
                                             <FormControl
                                                 name={INPUT_NAME.item_information.dimension.length}

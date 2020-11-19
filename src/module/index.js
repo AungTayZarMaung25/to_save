@@ -3,6 +3,7 @@ import component from './reducer.components';
 import system from './reducer.system'
 import information from './reducer.information';
 import option from './reducer.option'
+import quotation from './reducer.quotation'
 
 import { combineReducers } from 'redux';
 
@@ -19,7 +20,8 @@ export default combineReducers({
     component: component,
     system: system,
     information: information,
-    option: option
+    option: option,
+    quotation: quotation
 })
 
 

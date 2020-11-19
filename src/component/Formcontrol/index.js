@@ -36,6 +36,6 @@ FormControl.propTypes = {
     label: PropTypes.string,
     touched: PropTypes.object,
     errors: PropTypes.object,
-    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select]),
+    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select,Types.textarea,Types.date]),
 }
 export default FormControl

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
     },
     drawerOpen: {
         width: drawerWidth,
@@ -124,7 +124,8 @@ const DrawerBar = ({
             wordBreak: "break-word",
             maxWidth: 180,
             whiteSpace: "normal",
-            fontSize: 14,
+            fontSize: '0.8rem',
+            fontWeight:'bold'
         }
         :
         {}

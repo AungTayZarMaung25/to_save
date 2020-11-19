@@ -14,7 +14,8 @@ import {
   Scan,
   Document,
   System,
-  Information
+  Information,
+  
 } from './container'
 
 const useStyles = makeStyles((theme) => ({
@@ -73,9 +74,13 @@ export default () => {
             <Route exact path="/branch-maintenance" component={Information.Branch} />
             <Route exact path="/destination-maintenance" component={Information.Destination} />
 
+            {/** other  */}
             <Route exact path="/item-type-maintenance" component={Information.OtherInformation.ItemType} />
             <Route exact path="/express-type-maintenance" component={Information.OtherInformation.ExpressType} />
             <Route exact path="/carrier-maintenance" component={Information.OtherInformation.Carrier} />
+
+            {/** quotation */}
+            <Route exact path="/interval-maintenance" component={Information.Quotation.Interval} />
           </Switch>
 
         </div>

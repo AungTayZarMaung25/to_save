@@ -43,9 +43,16 @@ export async function getCarriers() {
  * post and create data
  */
 
- /**
-  * branch
-  */
- export async function create_destination(data){
-     return await httpService.post('/destinations/createdestination',data);
- }
+/**
+ * branch
+ */
+export async function create_destination(data) {
+    return await httpService.post('/destinations/createdestination', data);
+}
+
+/**
+ * quotation
+ */
+export async function getInterval() {
+    return await httpService.get('/quotations/getallintervals');
+}

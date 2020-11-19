@@ -152,8 +152,6 @@ export const COLUMN_EXPRESS_TYPES = [
     }
 ]
 
-
-
 export const COLUMN_DESTINATIONS = [
     {
         field: '_id',
@@ -210,6 +208,46 @@ export const COLUMN_DESTINATIONS = [
     }
 ]
 
+export const COLUMN_INTERVAL = [
+    {
+        field: '_id',
+        header: 'ID',
+        check: false,
+    },
+    {
+        field: 'name',
+        header: 'name',
+        check: true,
+    },
+    {
+        field: 'townships',
+        header: 'townships',
+        check: true,
+    },
+    {
+        field: 'createdAt',
+        header: 'created_at',
+        check: true,
+
+    },
+    {
+        field: 'updatedAt',
+        header: 'updated_at',
+        check: false,
+    },
+    {
+        field: 'update',
+        header: '-',
+        check: true,
+        content: data => <button className="danger" style={{ backgroundColor: 'danger' }}>update</button>
+    },
+    {
+        field: 'delete',
+        header: '-',
+        check: true,
+        content: data => <button className="danger" style={{ backgroundColor: 'darednger' }}>delete</button>
+    }
+]
 
 export const TEST_COL = [
     { field: 'id', headerName: 'ID', width: 70 },
