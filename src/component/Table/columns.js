@@ -220,8 +220,66 @@ export const COLUMN_INTERVAL = [
         check: true,
     },
     {
+        field: 'type',
+        header: 'type',
+        check: true,
+    },
+    {
         field: 'townships',
         header: 'townships',
+        check: true,
+        content: data =>
+            Array.isArray(data['townships']) ?
+                data['townships']
+                    .map(t => t.name)
+                    .join(',  ')
+                :
+                '-'
+    },
+    {
+        field: 'createdAt',
+        header: 'created_at',
+        check: true,
+
+    },
+    {
+        field: 'updatedAt',
+        header: 'updated_at',
+        check: false,
+    },
+    {
+        field: 'update',
+        header: '-',
+        check: true,
+        content: data => <button className="danger" style={{ backgroundColor: 'danger' }}>update</button>
+    },
+    {
+        field: 'delete',
+        header: '-',
+        check: true,
+        content: data => <button className="danger" style={{ backgroundColor: 'darednger' }}>delete</button>
+    }
+]
+
+export const COLUMN_QUOTATION_INTERVAL = [
+    {
+        field: '_id',
+        header: 'ID',
+        check: false,
+    },
+    {
+        field: 'name',
+        header: 'name',
+        check: true,
+    },
+    {
+        field: 'sending_area',
+        header: 'sender area',
+        check: true,
+    },
+    {
+        field: 'receiving_area',
+        header: 'receiver area',
         check: true,
     },
     {

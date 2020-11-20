@@ -3,7 +3,8 @@ import { Grid, makeStyles } from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
     grid: {
-        marginBottom: 20
+        marginBottom: 20,
+        padding: 5
     },
     border: {
         border: '1px solid lightgray',

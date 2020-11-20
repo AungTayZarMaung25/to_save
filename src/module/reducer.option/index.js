@@ -11,7 +11,8 @@ export const initialState = {
     itemtype_list: [],
     payment_type_list: [],
     shipping_type_list: [],
-    shipping_mode_list: []
+    shipping_mode_list: [],
+    interval_type_list: []
 }
 
 /**
@@ -76,6 +77,12 @@ export default (state = initialState, action) => {
                 shipping_mode_list: action.payload
             }
         }
+        case common.SET_INTERVAL_TYPE_LIST: {
+            return {
+                ..._getCommonState(state),
+                interval_type_list: action.payload
+            }
+        }
         default:
             return state
     }
@@ -137,5 +144,10 @@ export const set_shipping_type_list = (data = []) => ({
 
 export const set_shipping_mode_list = (data = []) => ({
     type: common.SET_SHIPPING_MODE_LIST,
+    payload: data
+})
+
+export const set_interval_type_list = (data = []) => ({
+    type: common.SET_INTERVAL_TYPE_LIST,
     payload: data
 })

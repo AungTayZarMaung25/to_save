@@ -12,6 +12,7 @@ import Carrier from './container.other.carriers';
  * Quotation
  */
 import Interval from './container.interval'
+import QuotationInterval from './container.quotationinterval'
 
 export const OtherInformation = {
     ItemType: ItemType,
@@ -20,7 +21,8 @@ export const OtherInformation = {
 }
 
 export const Quotation = {
-    Interval: Interval
+    Interval: Interval,
+    QuotationInterval: QuotationInterval
 }
 
 export {

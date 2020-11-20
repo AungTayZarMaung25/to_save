@@ -56,3 +56,7 @@ export async function create_destination(data) {
 export async function getInterval() {
     return await httpService.get('/quotations/getallintervals');
 }
+
+export async function create_interval(data) {
+    return await httpService.post('/quotations/createinterval', data);
+}
