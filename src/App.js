@@ -17,10 +17,11 @@ import {
   Information,
   
 } from './container'
+import { AppTabBar } from './component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex' 
   },
   content: {
     flexGrow: 1,
@@ -43,15 +44,18 @@ export default () => {
     dispatch(action_GetPermission());
   })
 
+  if(true) {
+
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-
       <Header />
       <Drawer />
-
       <main className={classes.content}>
         <div className={classes.toolBar}>
+          <AppTabBar/>
           <Switch>
             <Route exact path="/role-management" component={System.Roles} />
             {/** Scan */}
@@ -81,6 +85,7 @@ export default () => {
 
             {/** quotation */}
             <Route exact path="/interval-maintenance" component={Information.Quotation.Interval} />
+            <Route exact path="/quotation-maintenance" component={Information.Quotation.QuotationInterval} />
           </Switch>
 
         </div>

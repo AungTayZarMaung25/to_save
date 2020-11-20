@@ -63,7 +63,7 @@ export default (props) => {
         if(checkStatus(response)) {
             dispatch(Information_Action.Action_information.action_fetch_destination())
             alert('Success')
-            setOpen(false)
+            closeDialog()
         }
     }
 
@@ -103,18 +103,17 @@ export default (props) => {
                             <Dialog
                                 open={open}
                                 onClose={closeDialog}
-                                aria-labelledby="from-dialog-title"
+                                aria-labelledby="form-dialog-title"
                                 maxWidth="md"
                                 fullWidth={true}
                                 disableBackdropClick={true}
                                 disableEscapeKeyDown={true}
                             >
-                                <DialogTitle id="from-dialog-title">
+                                <DialogTitle id="form-dialog-title">
                                     Create new Destination
                                     </DialogTitle>
                                 <DialogContent>
                                     <Grid container spacing={1}>
-
                                         <AppGrid.InputGrid col={4}>
                                             <FormControl
                                                 name={INPUT_NAME.branch}

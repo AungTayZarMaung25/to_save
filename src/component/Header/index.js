@@ -24,6 +24,7 @@ import i18n from 'i18next';
 
 import { drawerWidth } from '../Drawer'
 import { FONT_CN, FONT_EN, LANGUAGES } from '../../constant/Language';
+import AppTabBar from '../AppTabBar';
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -40,12 +41,6 @@ const useStyles = makeStyles((theme) => ({
         })
     },
     appBarShift: {
-        // marginLeft: drawerWidth,
-        // width: `calc(100% - ${drawerWidth}px)`,
-        // transition: theme.transitions.create(['width', 'margin'], {
-        //     easing: theme.transitions.easing.sharp,
-        //     duration: theme.transitions.duration.enteringScreen
-        // })
         marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
         transition: theme.transitions.create(['width', 'margin'], {

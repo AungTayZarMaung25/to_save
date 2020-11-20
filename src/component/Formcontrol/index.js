@@ -5,20 +5,22 @@ import Datepicker from './datepicker';
 import Select from './select';
 import Textarea from './textarea';
 import Radio from './radio';
+import FormAutocomplete from './autocomplete';
 
 export const Types = {
     radio: "radio",
     checkbox: "checkbox",
     select: "select",
     date: "date",
-    textarea: "textarea"
+    textarea: "textarea",
+    autocomplete: "autocomplete"
 }
 
 const FormControl = (props) => {
     const { control } = props;
     switch (control) {
         case Types.radio:
-            return <Radio {...props}/>
+            return <Radio {...props} />
         case Types.checkbox:
             return null
         case Types.select:
@@ -27,6 +29,8 @@ const FormControl = (props) => {
             return <Datepicker {...props} />
         case Types.textarea:
             return <Textarea {...props} />
+        case Types.autocomplete:
+            return <FormAutocomplete {...props} />
         default:
             return <Input {...props} />
     }
@@ -36,6 +40,6 @@ FormControl.propTypes = {
     label: PropTypes.string,
     touched: PropTypes.object,
     errors: PropTypes.object,
-    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select,Types.textarea,Types.date]),
+    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select, Types.textarea, Types.date]),
 }
 export default FormControl

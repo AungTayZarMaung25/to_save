@@ -56,3 +56,10 @@ export async function OptionPaymentType() {
 export async function OptionItemType() {
     return await httpService.get(`/itemtypes/getoption`)
 }
+
+/**
+ * interval type
+ */
+export async function OptionIntervalType() {
+    return await httpService.get('/quotations/getintervaltypes')
+}

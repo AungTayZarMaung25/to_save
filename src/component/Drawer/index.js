@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+    Avatar,
     Drawer,
     IconButton,
     List,
     ListItem,
+    ListItemAvatar,
     ListItemText,
     makeStyles,
 } from '@material-ui/core'
@@ -78,10 +80,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#083265',
     },
     user_name: {
+        fontSize: 14,
         fontWeight: "bold"
     },
     role_text: {
-        fontSize: 14
+        fontSize: 12
     },
 }))
 
@@ -125,7 +128,7 @@ const DrawerBar = ({
             maxWidth: 180,
             whiteSpace: "normal",
             fontSize: '0.8rem',
-            fontWeight:'bold'
+            fontWeight: 'bold'
         }
         :
         {}
@@ -202,6 +205,11 @@ const DrawerBar = ({
             >
                 <div className={classes.toolBar}>
                     <ListItem>
+                        <ListItemAvatar>
+                            <Avatar
+                                src={require('../../assets/img/my_pp.jpg')}
+                            />
+                        </ListItemAvatar>
                         <ListItemText
                             primary={<span className={classes.user_name}>Thant Sin Aung</span>}
                             secondary={<span className={classes.role_text}>{data.roleName}</span>}
