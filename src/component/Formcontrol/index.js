@@ -6,6 +6,7 @@ import Select from './select';
 import Textarea from './textarea';
 import Radio from './radio';
 import FormAutocomplete from './autocomplete';
+import FormDateTimeLocal, { CURRENT_DATE_TIME } from './datetime_local';
 
 export const Types = {
     radio: "radio",
@@ -13,8 +14,16 @@ export const Types = {
     select: "select",
     date: "date",
     textarea: "textarea",
-    autocomplete: "autocomplete"
+    autocomplete: "autocomplete",
+    datetime_local: "datetime_local"
 }
+
+let ENUM_TYPES = []
+
+for (const t in Types) {
+    ENUM_TYPES.push(Types[t])
+}
+
 
 const FormControl = (props) => {
     const { control } = props;
@@ -31,15 +40,27 @@ const FormControl = (props) => {
             return <Textarea {...props} />
         case Types.autocomplete:
             return <FormAutocomplete {...props} />
+        case Types.datetime_local:
+            return <FormDateTimeLocal {...props} />
         default:
             return <Input {...props} />
     }
 }
+
 FormControl.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     touched: PropTypes.object,
     errors: PropTypes.object,
-    control: PropTypes.oneOf([Types.radio, Types.checkbox, Types.select, Types.textarea, Types.date]),
+    control: PropTypes.oneOf(ENUM_TYPES),
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+        PropTypes.number
+    ])
 }
 export default FormControl
+
+export {
+    CURRENT_DATE_TIME
+}

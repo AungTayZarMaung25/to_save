@@ -17,11 +17,13 @@ const AppButton = (props) => {
     const {
         variant = ButtonType.variant.contained,
         color = ButtonType.color.primary,
+        size = 'small'
     } = props
     return (
         <Button
+            size={size}
             variant={variant}
-            color={color} 
+            color={color}
             onClick={props.onClick}
             {...props}>
             {props.children}
@@ -35,6 +37,7 @@ AppButton.propTypes = {
         ButtonType.variant.outlined
     ]),
     color: PropTypes.string,
+    size: PropTypes.oneOf(['small', 'large', 'medium']),
     onClick: PropTypes.func
 }
 

@@ -20,34 +20,38 @@ const INPUT_NAME = {
     name: 'name',
     townships: 'townships',
     type: 'type',
+    destination: 'destination',
 
     region: 'region',
     district: 'district',
-    township: 'township'
+
+    remark: 'remark'
 }
 
 const initial_state = {
     name: '',
     townships: [],
     type: '',
+    destination: '',
 
     region: '',
     district: '',
-    township: ''
+    remark: ''
 }
 const validationSchema = Yup.object({
     name: Yup.string().required('name is required'),
     townships: Yup.array().required().min(1),
     type: Yup.string().required(),
+    destination: Yup.string().required(),
 
-    region: Yup.string(),
-    district: Yup.string(),
-    township: Yup.string(),
+    region: Yup.string().required(),
+    district: Yup.string().required(),
+    remark: Yup.string()
 })
 
 export default (props) => {
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const closeDialog = () => setOpen(false);
     const openDialog = () => setOpen(true);
 
@@ -56,10 +60,15 @@ export default (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(Information_Action.Action_quotation_maintencance.action_fetch_interval_list())
-        dispatch(Option_Action.action_fetch_interval_type_option())
 
-        dispatch(Option_Action.action_fetch_region_option())
+        dispatch(Information_Action.Action_quotation_maintencance.action_fetch_interval_list());
+
+        dispatch(Option_Action.action_fetch_destination_option());
+
+        dispatch(Option_Action.action_fetch_interval_type_option());
+
+        dispatch(Option_Action.action_fetch_region_option());
+
     }, [dispatch])
 
     /**
@@ -68,7 +77,7 @@ export default (props) => {
     const onChangeRegion = (val) => dispatch(Option_Action.action_fetch_district_option(val));
     const onChangeDistrict = (val) => dispatch(Option_Action.action_fetch_township_option(val));
 
-    const createNewInterval = async (data) => {
+    const createNewInterval = async (data, { resetForm }) => {
         try {
             let { townships = [] } = data
             let response = await informationservice.create_interval({
@@ -80,6 +89,7 @@ export default (props) => {
                 dispatch(Information_Action.Action_quotation_maintencance.action_fetch_interval_list())
                 alert('Success');
                 closeDialog()
+                resetForm()
             }
             else {
                 alert(response.statusText)
@@ -144,6 +154,14 @@ export default (props) => {
                                         </AppGrid.InputGrid>
                                         <AppGrid.InputGrid col={4}>
                                             <FormControl
+                                                name={INPUT_NAME.destination}
+                                                label={'Destination'}
+                                                control={Types.select}
+                                                options={props.destinations || []}
+                                            />
+                                        </AppGrid.InputGrid>
+                                        <AppGrid.InputGrid col={4}>
+                                            <FormControl
                                                 name={INPUT_NAME.region}
                                                 label={'Region'}
                                                 control={Types.select}
@@ -169,12 +187,18 @@ export default (props) => {
                                                 }}
                                             />
                                         </AppGrid.InputGrid>
-                                        <AppGrid.InputGrid col={8}>
+                                        <AppGrid.InputGrid col={4}>
                                             <FormControl
                                                 name={INPUT_NAME.townships}
                                                 label={'Townships'}
                                                 control={Types.autocomplete}
                                                 options={props.township || []}
+                                            />
+                                        </AppGrid.InputGrid>
+                                        <AppGrid.InputGrid col={4}>
+                                            <FormControl
+                                                name={INPUT_NAME.remark}
+                                                label={'remark'}
                                             />
                                         </AppGrid.InputGrid>
                                     </Grid>

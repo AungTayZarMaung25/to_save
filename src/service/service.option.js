@@ -29,6 +29,13 @@ export async function OptionBranch() {
 }
 
 /**
+ * destination
+ */
+export async function OptionDestination() {
+    return await httpService.get(`/destinations/getoption`)
+}
+
+/**
  * express type
  */
 export async function OptionExpressType() {
@@ -62,4 +69,11 @@ export async function OptionItemType() {
  */
 export async function OptionIntervalType() {
     return await httpService.get('/quotations/getintervaltypes')
+}
+
+/**
+ * interval group by type
+ */
+export async function OptionIntervalGroup() {
+    return await httpService.get('/quotations/get-interval-group')
 }

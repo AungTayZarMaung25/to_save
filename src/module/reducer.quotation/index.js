@@ -1,14 +1,16 @@
 import * as common from '../type';
 
 const types = {
-    SET_INTERVAL_LIST: "SET_INTERVAL_LIST"
+    SET_INTERVAL_LIST: "SET_INTERVAL_LIST",
+    SET_QUOTATION_INTERVAL: "SET_QUOTATION_INTERVAL"
 }
 
 export const initialState = {
     isLoading: false,
     errorMessage: '',
 
-    interval_list: []
+    interval_list: [],
+    quotation_interval: []
 }
 
 /**
@@ -35,6 +37,11 @@ export default (state = initialState, action) => {
             return {
                 ..._getCommonState(state),
                 interval_list: action.payload
+            }
+        case types.SET_QUOTATION_INTERVAL:
+            return {
+                ..._getCommonState(state),
+                quotation_interval: action.payload
             }
         default:
             return state
@@ -66,5 +73,10 @@ export const set_error_message = (message = '') => ({
 
 export const set_interval_list = (data = []) => ({
     type: types.SET_INTERVAL_LIST,
+    payload: data
+})
+
+export const set_quotation_interval = (data = []) => ({
+    type: types.SET_QUOTATION_INTERVAL,
     payload: data
 })

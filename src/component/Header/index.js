@@ -24,7 +24,6 @@ import i18n from 'i18next';
 
 import { drawerWidth } from '../Drawer'
 import { FONT_CN, FONT_EN, LANGUAGES } from '../../constant/Language';
-import AppTabBar from '../AppTabBar';
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {

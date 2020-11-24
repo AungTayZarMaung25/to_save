@@ -36,6 +36,11 @@ select.inputField {
   display: block;
 }
 
+.date-input {
+  width: 97%;
+  border: 2px solid red;
+}
+
 textarea.inputField :focus,
 input.inputField :focus,
 select.inputField :focus {

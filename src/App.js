@@ -17,7 +17,7 @@ import {
   Information,
   
 } from './container'
-import { AppTabBar } from './component';
+// import { AppTabBar } from './component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +55,7 @@ export default () => {
       <Drawer />
       <main className={classes.content}>
         <div className={classes.toolBar}>
-          <AppTabBar/>
+          {/* <AppTabBar/> */}
           <Switch>
             <Route exact path="/role-management" component={System.Roles} />
             {/** Scan */}

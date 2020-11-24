@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { AppBar, Box, colors, makeStyles, Paper, Tab, Tabs } from '@material-ui/core'
-import { drawerWidth } from '../Drawer';
+import React, {  useState } from 'react'
+import {Box, makeStyles, Tab, Tabs  } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,8 +15,6 @@ function a11yProps(index) {
         'aria-controls': `scrollable-force-tabpanel-${index}`,
     };
 }
-
-let tabs = new Array(15)
 
 export default function AppTabBar() {
     const classes = useStyles();

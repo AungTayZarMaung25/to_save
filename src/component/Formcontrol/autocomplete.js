@@ -23,31 +23,29 @@ const FormAutocomplete = props => {
                 }) => {
                     const hasError = meta.error && meta.touched
                     return (
-                        (
-                            <React.Fragment>
-                                <Autocomplete
-                                    // {...field}
-                                    className={`MuiInputBase-root ${hasError ? 'MuiInputBase-root-Error' : ''}`}
-                                    multiple
-                                    id="auto-complete-multi"
-                                    size="small"
-                                    blurOnSelect={"touch"}
-                                    onChange={(e, value) => setFieldValue(name, value)}
-                                    options={props.options || []}
-                                    getOptionLabel={(option) => option.label || option.name}
-                                    disableCloseOnSelect={true}
-                                    renderInput={(params) => (
-                                        <TextField
-                                            {...field}
-                                            {...params}
-                                            variant="outlined"
-                                            placeholder={props.placeholder || ''}
-                                        />
-                                    )}
-                                />
-                                <span className={"messageError"}>{hasError ? meta.error : ''}</span>
-                            </React.Fragment>
-                        )
+                        <React.Fragment>
+                            <Autocomplete
+                                // {...field}
+                                className={`MuiInputBase-root ${hasError ? 'MuiInputBase-root-Error' : ''}`}
+                                multiple
+                                id={`auto-complete-multi-${name}`}
+                                size="small"
+                                blurOnSelect={"touch"}
+                                onChange={(e, value) => setFieldValue(name, value)}
+                                options={props.options || []}
+                                getOptionLabel={(option) => option.label || option.name}
+                                disableCloseOnSelect={true}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...field}
+                                        {...params}
+                                        variant="outlined"
+                                        placeholder={props.placeholder || ''}
+                                    />
+                                )}
+                            />
+                            <span className={"messageError"}>{hasError ? meta.error : ''}</span>
+                        </React.Fragment>
                     )
                 }}
             </Field>

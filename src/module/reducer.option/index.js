@@ -5,14 +5,22 @@ export const initialState = {
     errorMessage: '',
 
     branch_list: [],
+    destination_list: [],
     region_list: [],
     district_list: [],
     township_list: [],
     itemtype_list: [],
     payment_type_list: [],
-    shipping_type_list: [],
+    shipping_type_list: [], // express type
     shipping_mode_list: [],
-    interval_type_list: []
+    interval_type_list: [],
+
+    /**
+     * creation on quotation interval group set
+     */
+    interval_list_sender: [],
+    interval_list_receiver: [],
+
 }
 
 /**
@@ -33,6 +41,12 @@ export default (state = initialState, action) => {
             return {
                 ..._getCommonState(state),
                 branch_list: action.payload
+            }
+        }
+        case common.SET_DESTINATION_LIST: {
+            return {
+                ..._getCommonState(state),
+                destination_list: action.payload
             }
         }
         case common.SET_REGION_LIST: {
@@ -83,6 +97,12 @@ export default (state = initialState, action) => {
                 interval_type_list: action.payload
             }
         }
+        case common.SET_INTERVAL_GROUP:
+            return {
+                ..._getCommonState(state),
+                interval_list_sender: action.sender,
+                interval_list_receiver: action.receiver
+            }
         default:
             return state
     }
@@ -109,6 +129,11 @@ export const stop_loading = () => ({
 
 export const set_branch_list = (data = []) => ({
     type: common.SET_BRANCH_LIST,
+    payload: data
+})
+
+export const set_destination_list = (data = []) => ({
+    type: common.SET_DESTINATION_LIST,
     payload: data
 })
 
@@ -150,4 +175,10 @@ export const set_shipping_mode_list = (data = []) => ({
 export const set_interval_type_list = (data = []) => ({
     type: common.SET_INTERVAL_TYPE_LIST,
     payload: data
+})
+
+export const set_interval_group = (sender = [], receiver = []) => ({
+    type: common.SET_INTERVAL_GROUP,
+    sender,
+    receiver
 })

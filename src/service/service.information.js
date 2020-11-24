@@ -60,3 +60,15 @@ export async function getInterval() {
 export async function create_interval(data) {
     return await httpService.post('/quotations/createinterval', data);
 }
+
+export async function get_quotation_interval() {
+    return await httpService.get('/quotations/get-quotation-interval');
+}
+
+export async function create_quotation_interval(data) {
+    return await httpService.post('/quotations/create-quotation-interval', data);
+}
+
+export async function create_quotation_rule(quotation_id, data) {
+    return await httpService.post(`/quotations/create-quotation-rule?quotation=${quotation_id}`, data)
+}

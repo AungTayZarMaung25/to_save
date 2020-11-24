@@ -1,5 +1,5 @@
-// const BASE_URL_DEV = `http://localhost:4500/api/v1`
-const BASE_URL_DEV = `http://khapi.herokuapp.com/api/v1`
+const BASE_URL_DEV = `http://localhost:4500/api/v1`
+// const BASE_URL_DEV = `http://khapi.herokuapp.com/api/v1`
 const BASE_URL_PROD = `http://live`
 
 function check_env () {

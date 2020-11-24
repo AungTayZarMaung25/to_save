@@ -11,6 +11,8 @@ import {
     set_shipping_type_list,
     set_shipping_mode_list,
     set_interval_type_list,
+    set_destination_list,
+    set_interval_group,
 
 } from '../reducer.option'
 import { optionService } from '../../service';
@@ -31,6 +33,26 @@ export const action_fetch_branch_option = () => {
             else dispatch(stop_loading())
         } catch (error) {
             console.log(error)
+            dispatch(stop_loading())
+        }
+    }
+}
+
+/**
+ * destination
+ */
+export const action_fetch_destination_option = () => {
+    return async (dispatch, getState) => {
+        dispatch(start_loading());
+        try {
+            const response = await optionService.OptionDestination();
+            if (checkStatus(response)) {
+                const body = await response.data;
+                dispatch(set_destination_list(body));
+            }
+            else dispatch(stop_loading())
+        } catch (error) {
+            console.log(error);
             dispatch(stop_loading())
         }
     }
@@ -150,6 +172,10 @@ export const action_fetch_shippingtype_option = () => {
     return async (dispatch, getState) => {
         dispatch(start_loading());
         try {
+            
+            let option = getState().option?.shipping_type_list
+            if (Array.isArray(option) && option.length) return;
+
             const response = await optionService.OptionExpressType();
             if (checkStatus(response)) {
                 const body = await response.data;
@@ -200,6 +226,25 @@ export const action_fetch_interval_type_option = () => {
             else dispatch(stop_loading())
         } catch (error) {
             console.log(error)
+            dispatch(stop_loading())
+        }
+    }
+}
+
+/**
+ * interval group by type
+ */
+export const action_fetch_interval_group_option = () => {
+    return async (dispatch, getState) => {
+        dispatch(start_loading());
+        try {
+            const response = await optionService.OptionIntervalGroup();
+            if (checkStatus(response)) {
+                const { sending_interval, receiving_interval } = await response.data;
+                dispatch(set_interval_group(sending_interval, receiving_interval))
+            }
+        } catch (error) {
+            console.log(error);
             dispatch(stop_loading())
         }
     }

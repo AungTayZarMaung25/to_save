@@ -1,4 +1,5 @@
 import React from 'react'
+import { ActionUpdate, ViewQuotation } from './TableCellAction'
 
 export const COLUMN_USER_ROLE = [
     {
@@ -225,6 +226,15 @@ export const COLUMN_INTERVAL = [
         check: true,
     },
     {
+        field: 'total',
+        header: 'total',
+        check: true,
+        content: data => Array.isArray(data['townships']) ?
+            data['townships'].length
+            :
+            '-'
+    },
+    {
         field: 'townships',
         header: 'townships',
         check: true,
@@ -276,11 +286,25 @@ export const COLUMN_QUOTATION_INTERVAL = [
         field: 'sending_area',
         header: 'sender area',
         check: true,
+        content: data =>
+            Array.isArray(data['sending_area']) ?
+                data['sending_area']
+                    .map(a => a.name)
+                    .join(',  ')
+                :
+                '-'
     },
     {
         field: 'receiving_area',
         header: 'receiver area',
         check: true,
+        content: data =>
+            Array.isArray(data['receiving_area']) ?
+                data['receiving_area']
+                    .map(a => a.name)
+                    .join(',  ')
+                :
+                '-'
     },
     {
         field: 'createdAt',
@@ -297,7 +321,44 @@ export const COLUMN_QUOTATION_INTERVAL = [
         field: 'update',
         header: '-',
         check: true,
-        content: data => <button className="danger" style={{ backgroundColor: 'danger' }}>update</button>
+        content: data => <ViewQuotation {...data} />
+    },
+    {
+        field: '-',
+        header: '-',
+        check: true,
+        content: data => <ActionUpdate {...data} />
+    },
+
+    {
+        field: 'delete',
+        header: '-',
+        check: true,
+        content: data => <button className="danger" style={{ backgroundColor: 'darednger' }}>delete</button>
+    }
+]
+
+export const QUOTATION_RULES = [
+    {
+        field: '_id',
+        header: 'ID',
+        check: false,
+    },
+    {
+        field: 'name',
+        header: 'name',
+        check: true,
+    },
+    {
+        field: 'createdAt',
+        header: 'created_at',
+        check: true,
+
+    },
+    {
+        field: 'updatedAt',
+        header: 'updated_at',
+        check: false,
     },
     {
         field: 'delete',

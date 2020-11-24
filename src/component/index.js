@@ -1,7 +1,7 @@
 import Drawer from './Drawer'
 import Header from './Header'
 import AppTabBar from './AppTabBar'
-import FormControl, { Types } from './Formcontrol';
+import FormControl, { Types , CURRENT_DATE_TIME } from './Formcontrol';
 
 import * as Table from './Table'
 import * as AppGrid from './AppGrid'
@@ -16,5 +16,6 @@ export {
     AppButton, ButtonType,
 
     Types,
+    CURRENT_DATE_TIME,
     FormControl,
 }   
