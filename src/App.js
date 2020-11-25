@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CssBaseline, makeStyles } from '@material-ui/core'
+import { colors, CssBaseline, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core'
 import { useDispatch } from 'react-redux';
 import {
   Switch,
@@ -15,13 +15,14 @@ import {
   Document,
   System,
   Information,
-  
+
 } from './container'
+import { AppButton, ButtonType } from './component';
 // import { AppTabBar } from './component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex' 
+    display: 'flex'
   },
   content: {
     flexGrow: 1,
@@ -33,6 +34,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50
     // padding: theme.spacing(0, 1),
     // ...theme.mixins.toolbar
+  },
+  btn_delete: {
+    backgroundColor: theme.palette.error.dark,
+    '&:hover': {
+      background: theme.palette.error.dark,
+    }
+  },
+  typo_delete: {
+    color: colors.white,
+    fontSize: 13
   }
 }))
 
@@ -43,10 +54,6 @@ export default () => {
   useEffect(() => {
     dispatch(action_GetPermission());
   })
-
-  if(true) {
-
-  }
 
   return (
     <div className={classes.root}>
@@ -69,7 +76,7 @@ export default () => {
             <Route exact path="/receive" component={Scan.ReceivingScan} />
             <Route exact path="/unloading" component={Scan.UnloadingScan} />
             <Route exact path="/unpacking" component={Scan.UnpackingScan} />
-            
+
             {/** Document */}
             <Route exact path="/waybillentry" component={Document.WayBillEntry} />
 
@@ -91,6 +98,40 @@ export default () => {
         </div>
       </main>
 
+      {/**
+       * prompt to delete
+       */}
+      <Dialog
+        open={false}
+        onClose={false}
+        aria-labelledby="prompt-to-delete"
+        maxWidth="sm"
+        disableEscapeKeyDown={true}
+        disableBackdropClick={true}
+      >
+        <DialogTitle id="prompt-to-delete">
+          Are you sure want to delete ?
+        </DialogTitle>
+        <DialogContent>
+
+        </DialogContent>
+        <DialogActions>
+          <AppButton
+            variant={ButtonType.variant.contained}
+            color={ButtonType.color.secondary}
+          >
+            cancel
+          </AppButton>
+          <AppButton
+            variant={ButtonType.variant.contained}
+            className={classes.btn_delete}
+          >
+            <Typography className={classes.typo_delete}>
+              delete
+            </Typography>
+          </AppButton>
+        </DialogActions>
+      </Dialog>
 
     </div>
   )

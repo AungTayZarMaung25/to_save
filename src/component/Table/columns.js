@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActionUpdate, ViewQuotation } from './TableCellAction'
+import { ActionUpdate, Delete, ViewQuotation } from './TableCellAction'
 
 export const COLUMN_USER_ROLE = [
     {
@@ -334,7 +334,7 @@ export const COLUMN_QUOTATION_INTERVAL = [
         field: 'delete',
         header: '-',
         check: true,
-        content: data => <button className="danger" style={{ backgroundColor: 'darednger' }}>delete</button>
+        content: data => <Delete {...data} />
     }
 ]
 
@@ -345,8 +345,23 @@ export const QUOTATION_RULES = [
         check: false,
     },
     {
-        field: 'name',
-        header: 'name',
+        field: 'expresstype.name',
+        header: 'express type',
+        check: true,
+    },
+    {
+        field: 'minimum',
+        header: 'minimum (*kg)',
+        check: true,
+    },
+    {
+        field: 'minimum_charges',
+        header: 'minimum charges',
+        check: true,
+    },
+    {
+        field: 'additional_charges',
+        header: 'additional',
         check: true,
     },
     {

@@ -20,7 +20,7 @@ export default (props) => {
             color={ButtonType.color.primary}
             onClick={handler}
         >
-            view quotation
+            quotation
         </AppButton>
     )
 }

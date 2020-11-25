@@ -8,8 +8,10 @@ export const ButtonType = {
         outlined: 'outlined'
     },
     color: {
+        inherit: 'inherit',
         primary: 'primary',
-        secondary: 'secondary'
+        secondary: 'secondary',
+        danger: 'error'
     }
 }
 
@@ -17,7 +19,8 @@ const AppButton = (props) => {
     const {
         variant = ButtonType.variant.contained,
         color = ButtonType.color.primary,
-        size = 'small'
+        size = 'small',
+        ...rest
     } = props
     return (
         <Button
@@ -25,7 +28,8 @@ const AppButton = (props) => {
             variant={variant}
             color={color}
             onClick={props.onClick}
-            {...props}>
+            {...rest}
+            >
             {props.children}
         </Button>
     )
